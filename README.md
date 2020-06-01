@@ -1,4 +1,5 @@
 ### Capstone-Project-Internet-Forum-Mental-Health-Risk-Prediction
+Is it possible to identify internet forum users who might require support for mental health related issues based on their wider interests? I used reddit post data for all users in 2018 to predict whether a user is likely to post to mental health advice forums, a proxy for mental health risk.
 
 ### Overall Summary
 
@@ -34,7 +35,7 @@ I then decided to pivot to looking into user behaviour in regards to posting to 
 
 ### Data Collection & Cleaning
 **Dataset**
-* Data was pulled from the bigquery pushshift.io dataset via SQL, with author, subreddit and count of number of posts  from 2018
+* Data was pulled from the bigquery pushshift.io dataset via SQL, with author, subreddit and count of number of posts from 2018
 * Pulled data included author and subreddits, as well as count per subreddit to allow for total number of posts per user to subreddit
 * In cases where the author or subreddit was deleted these were excluded from the SQL query:
   * Due to dataset size the pull was split into three sections and then combined via joining
@@ -52,8 +53,8 @@ I then decided to pivot to looking into user behaviour in regards to posting to 
   * Assessment of correlation between our target & the top subreddits
 
 **Correlation with Top Subreddits**
-* Post EDA we wanted to understand the correlation between our target variable and each subreddit
-* Given there were over 50k subreddits included we focused on the top ones
+* Post EDA I wanted to understand the correlation between our target variable and each subreddit
+* Given there were over 50k subreddits included I focused on the top ones
 * In the majority of instances correlation is very low (between -5 to 5% correlation with positive target)
 * This is unsurprising given the significant imbalance within our target class and the fact that these are the most popular subreddits overall
 * However, in some instances we do see greater correlation, such as r/advice, r/legaladvice & r/askdoctors, suggesting that those users which may have greater impulse to seek help are also those which may be suffering from mental health disorders
@@ -70,7 +71,7 @@ I then decided to pivot to looking into user behaviour in regards to posting to 
 
 ### Conclusions & Next Steps
 * Overall the evaluated models offer potential for identifying mental health risk in internet forum users
-* In particular, the greatest potential use case is likely to be identifying users who may not currently be aware of, and post to, support forums but who could benefit from their supports & thus promotion on over popular subreddits
+* In particular, the greatest potential use case is likely to be identifying users who may not currently be aware of, and post to, support forums but who could benefit from their support & thus promotion on over popular subreddits
 * The high recall at the expense at accuracy is too much in some cases, though a high number of false positives is not as much of an issue for a risk analyses, and indeed may reflect current sufferers of mental health issues who simply do not post to reddit about their issues
  * Their are some potential risks & limitations for this research:
   * The demographic used in the sample is likely to be younger & focused on North America & Europe 
