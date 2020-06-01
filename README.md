@@ -35,10 +35,12 @@ I then decided to pivot into looking into user behaviour in terms of posting to 
 ### Data Collection & Cleaning 
  * File: MKII_Data_Extraction_Cleaning
  
-**Dataset**
-* Data was pulled from the bigquery pushshift.io dataset via SQL, with author, subreddit and count of number of posts from 2018
-* Pulled data included author and subreddits, as well as count per subreddit to allow for total number of posts per user to subreddit
-* In cases where the author or subreddit was deleted these were excluded from the SQL query:
+**Data Collection**
+* Data was pulled from the pushshift.io dataset stored on BigQuery via SQL
+* The data covered 2018 and included post author and the subreddit posted to, as well as the count of total posts per subreddit per author 
+* In cases where the author or subreddit were deleted these were excluded from the SQL query
   * Due to dataset size the pull was split into three sections and then combined via joining
   * Post-joining any null values were removed
   * Author names were converted to numbers to both save memory and avoid delving into specific author behaviour on reddit
+* Before any further cleaning steps were taken there were 12.1M unique users, posting to 1.4M unique subreddits with a total of 125M posts in 2018:
+![Unique features precleaning](unique_features_precleaning.png)
