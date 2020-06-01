@@ -43,4 +43,5 @@ I then decided to pivot into looking into user behaviour in terms of posting to 
   * Post-joining any null values were removed
   * Author names were converted to numbers to both save memory and avoid delving into specific author behaviour on reddit
 * Before any further cleaning steps were taken there were 12.1M unique users, posting to 1.4M unique subreddits with a total of 125M posts in 2018:
+
 ![Unique Variable Counts](https://github.com/samholt13/GA_Capstone_Project/blob/master/Images/unique_features_precleaning.png)
