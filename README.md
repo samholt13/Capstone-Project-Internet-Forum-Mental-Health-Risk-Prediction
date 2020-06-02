@@ -48,9 +48,9 @@ I then decided to pivot into looking into user behaviour in terms of posting to 
 
 **Data Cleaning**
 * Several cleaning steps were undertaken to prepare the data for EDA and analysis:
- * Converted author usernames to a numerical key
- * Checked and removed outliers in term of number of posts per user
+  * Converted author usernames to a numerical key
+  * Checked and removed outliers in term of number of posts per user
    * High posters were often bots or spam and were removed
- * Removed users who only post to a small number of subreddits due to lack of information
- * Combined mental health related subreddits into boolean target variable
- * Merged single user and those with very few users into a single target variable
+  * Removed users who only post to a small number of subreddits due to lack of information
+  * Combined mental health related subreddits into boolean target variable
+  * Merged single user and those with very few users into a single target variable
