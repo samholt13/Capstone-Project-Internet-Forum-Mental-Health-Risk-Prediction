@@ -1,3 +1,5 @@
+**NOTE: currently in process of adding notebooks**
+
 ### Capstone-Project-Internet-Forum-Mental-Health-Risk-Prediction
 Is it possible to identify internet forum users who might require support for mental health related issues based on their wider interests? 
 
