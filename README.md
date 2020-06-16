@@ -77,7 +77,8 @@ I then decided to pivot into looking into user behaviour in terms of posting to 
 ![Baseline Modelling Results](https://github.com/samholt13/GA_Capstone_Project/blob/master/Images/download-2.png)
 * Most of the evaluated models achieved higher accuracy than baseline, though low recall scores show missing the point of the project!
 * Recall is important here as it reflects the number of positive results predicted by the model vs. all actual positive results (True positive / (True positive + False negative))
-* High accuracy but low recall this implies the model is essentially ignoring the positive results and predicting everything as negative for the target, basically identifying very few users for mental health risk 
+* High accuracy but low recall this implies the model is essentially ignoring the positive results and predicting everything as negative for the target, basically identifying very few users for mental health risk
+
  
 **Optimising through Sampling**
 * To attempt to improve the recall for my models I created a class (TinyTarget) to evaluate several under and over sampling techniques:
@@ -86,7 +87,9 @@ I then decided to pivot into looking into user behaviour in terms of posting to 
  
  ![Modelling Results after Sampling Techniques Implemented](https://github.com/samholt13/GA_Capstone_Project/blob/master/Images/download-3.png)
  
- * The models I would take forward to gridsearch evaluation would be those with accuracy > 80% and recall > 50% 
+ * The models I would take forward for further evaluation would be those with accuracy > 80% and recall > 50% 
+ * The siginifcant increase in recall offers potential for utilising these models and given the insidious nature of mental health risk proactive identification (even in the case of false positives) is preferred to a higher proportion of false negatives
+ 
  
  ### Summary & Next Steps
  * Overall the evaluated models offer potential for identifying mental health risk in internet forum users
