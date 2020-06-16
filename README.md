@@ -9,13 +9,11 @@ In this project I used Reddit post data from all users in 2018 to predict whethe
 
 This was my capstone project undertaken for completion of the General Assembly Data Science Immersive Programme.
 
-My goals for the project were to understand and predict mental health risk in users of the internet forum website Reddit, initially I wanted to estimate the impact of news topics and sentiment on mental health risk, before pivoting to look at user interests and the relationship with mental health risk. 
- * Mental heatlh risk in this context is whether a user posts to the various mental health related subreddits
- * Users of these subreddits are typically looking to vent or to ask for advice from fellow users
+My goals for the project were to understand and predict mental health risk in users of the internet forum website Reddit.
 
 Initially I wanted to look a potential time series analysis of the overall number of posts to mental health related subreddits based on sentiment & clustering of daily news stories from the major Reddit news forum. Unfortunately data was restricted to news headlines only and after some initial EDA it became apparent that more information per article would be required to perform adequate NLP and create a worthwhile analysis.
 
-I then decided to pivot into looking into user behaviour in terms of posting to other, unrelated, forums and whether this can be used to predict mental health risk. I created a boolean target variable of whether a user had posted to a mental health related subreddit over the time period as my estimator for mental health risk in a specific individual.
+I then decided to pivot into looking into user behaviour in terms of posting to other, unrelated, forums and whether this can be used to predict mental health risk.
 
 ### Problem Statement & Project Goals 
 **Background**
@@ -78,16 +76,17 @@ I then decided to pivot into looking into user behaviour in terms of posting to 
 
 ![Baseline Modelling Results](https://github.com/samholt13/GA_Capstone_Project/blob/master/Images/download-2.png)
 * Most of the evaluated models achieved higher accuracy than baseline, though low recall scores show missing the point of the project!
+* Recall is important here as it reflects the number of positive results predicted by the model vs. all actual positive results (True positive / (True positive + False negative))
+* High accuracy but low recall this implies the model is essentially ignoring the positive results and predicting everything as negative for the target, basically identifying very few users for mental health risk 
  
 **Optimising through Sampling**
-* To attempt to improve the recall for my models I created a class (TinyTarget, patent pending) to evaluate several under and over sampling techniques:
+* To attempt to improve the recall for my models I created a class (TinyTarget) to evaluate several under and over sampling techniques:
  * Random undersampling, TomekLinks, NeighbourhoodClean, NearMiss, SMOTE upsampling, random oversampling, ADASYN
  * Results show a significant improvement in recall in the majority of instances, though decreasing accuracy as recall improves:
  
  ![Modelling Results after Sampling Techniques Implemented](https://github.com/samholt13/GA_Capstone_Project/blob/master/Images/download-3.png)
  
  * The models I would take forward to gridsearch evaluation would be those with accuracy > 80% and recall > 50% 
- * Unfortunately due to time constraints (and processing power) I elected to stop before the girdsearch step
  
  ### Summary & Next Steps
  * Overall the evaluated models offer potential for identifying mental health risk in internet forum users
