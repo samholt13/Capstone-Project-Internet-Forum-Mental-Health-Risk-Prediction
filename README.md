@@ -61,18 +61,47 @@ I then decided to pivot into looking into user behaviour in terms of posting to 
  * File: MKII_EDA
  
 **Data Manipulation & Feature Selection**
-* Several cleaning steps were undertaken to prepare the data for EDA and analysis:
-  * Converted author usernames to a numerical key
-  * Checked and removed outliers in term of number of posts per user
-    * High posters were often bots or spam and were removed
-  * Removed users who only post to a small number of subreddits due to lack of information
-  * Combined mental health related subreddits into boolean target variable
-  * Merged single user and those with very few users into a single target variable
  * I created a formula to create a sparse pivot table in order to conduct EDA, with authors for rows, subreddits for columns & number of posts as variables
+ * Due to size of the database I resampled the data to get 80,000 (10%) samples
+ * Baseline model accuracy was 95% (5% of samples were positive for my target variable) 
  * Given the sheer number of features I used a simple model-based feature selection process (RandomForestClassifier) to reduce the overall number and facilitate correlation calculations, extracting the top 500 features overall
  
  **Correlation with Target Variable**
 * Given the sheer imbalance between classes, overall correlation with the target variable is low (between -5 to 5% correlation with positive target)
 * The features with the highest correlation to the target variable were typically focused upon advice (Advice, AskDocs, relationships), drugs, loneliness and some mental health related subreddits not included within the target variable:
+
 ![Correlation with Target Variable](https://github.com/samholt13/GA_Capstone_Project/blob/master/Images/download.png)
+
+### Data Collection & Cleaning 
+**Proof of Concept Modelling**
+* I created a function to run my models and ran logistic regression, KNN, decision tree, random forest classifier, gradient boost and SVC models to assess baseline results without parameter tuning:
+
+![Baseline Modelling Results](https://github.com/samholt13/GA_Capstone_Project/blob/master/Images/download-2.png)
+* Most of the evaluated models achieved higher accuracy than baseline, though low recall scores show missing the point of the project!
  
+**Optimising through Sampling**
+* To attempt to improve the recall for my models I created a class (TinyTarget, patent pending) to evaluate several under and over sampling techniques:
+ * Random undersampling, TomekLinks, NeighbourhoodClean, NearMiss, SMOTE upsampling, random oversampling, ADASYN
+ * Results show a significant improvement in recall in the majority of instances, though decreasing accuracy as recall improves:
+ 
+ ![Modelling Results after Sampling Techniques Implemented](https://github.com/samholt13/GA_Capstone_Project/blob/master/Images/download-3.png)
+ 
+ * The models I would take forward to gridsearch evaluation would be those with accuracy > 80% and recall > 50% 
+ * Unfortunately due to time constraints (and processing power) I elected to stop before the girdsearch step
+ 
+ ### Summary & Next Steps
+ * Overall the evaluated models offer potential for identifying mental health risk in internet forum users
+* In particular, the greatest potential use case is likely to be identifying users who may not currently be aware of, and post to, support forums but who could benefit from their supports & thus promotion on over popular subreddits
+* The high recall at the expense at accuracy is too much in some cases, though a high number of false positives is not as much of an issue for a risk analyses, and indeed may reflect current sufferers of mental health issues who simply do not post to reddit about their issues
+* Their are some potential risks & limitations for this research:
+    * The demographic used in the sample is likely to be younger & focused on North America & Europe 
+    * The majority of users on any website are ‘lurkers’ and do not post, this research assumes that they are represented & do not differ significantly in personality etc. than those who do post
+    * Key assumption is that posting on mental health forums is indicative of mental health risk 
+* Next steps would include:
+    * Grid Searching & fine tuning identified models
+    * Running identified models on full (non-resampled dataset)
+    * Expanding data set to incorporate additional years for greater breadth of sample
+    * Reaching out to reddit users for more information regarding background & mental health to inform additional features
+    * Network analysis to identify out those subreddits most closely related to mental health 
+    
+
